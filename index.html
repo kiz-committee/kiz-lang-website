@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kiz 版本下载</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: #f9f9f9;
+            padding: 20px;
+        }
+        /* 导航栏样式 */
+        .navbar {
+            display: flex;
+            justify-content: flex-end;
+            gap: 24px;
+            padding: 16px 0;
+            margin-bottom: 40px;
+            border-bottom: 1px solid #eee;
+        }
+        .navbar a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        .navbar a:hover {
+            color: #2563eb;
+        }
+        /* 页面标题 */
+        .header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+        .header h1 {
+            font-size: 2.5rem;
+            color: #1f2937;
+            margin-bottom: 12px;
+        }
+        .header p {
+            font-size: 1.1rem;
+            color: #6b7280;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        /* 版本卡片 */
+        .version-card {
+            background: white;
+            max-width: 600px;
+            margin: 0 auto;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 24px;
+            border-bottom: 1px solid #eee;
+        }
+        .card-header h2 {
+            font-size: 1.4rem;
+            color: #1f2937;
+        }
+        .latest-badge {
+            background-color: #10b981;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        .card-body {
+            padding: 24px;
+        }
+        .update-list {
+            margin-bottom: 32px;
+        }
+        .update-list h3 {
+            font-size: 1rem;
+            color: #374151;
+            margin-bottom: 12px;
+        }
+        .update-list ul {
+            list-style: disc;
+            padding-left: 20px;
+            color: #6b7280;
+        }
+        /* 下载按钮组 */
+        .download-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-primary {
+            background-color: #2563eb;
+            color: white;
+            flex: 1;
+            min-width: 200px;
+        }
+        .btn-primary:hover {
+            background-color: #1d4ed8;
+        }
+        .btn-secondary {
+            background-color: #f3f4f6;
+            color: #374151;
+        }
+        .btn-secondary:hover {
+            background-color: #e5e7eb;
+        }
+        .btn i {
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <a href="https://playground.kiz.random321.com" target="_blank">Playground</a>
+        <a href="https://document.kiz.random321.com" target="_blank">文档</a>
+    </nav>
+
+    <!-- 页面头部 -->
+    <div class="header">
+        <h1>Kiz 版本下载</h1>
+        <p>kiz 是一个简单的, 面向对象的, 开源的编程语言</p>
+    </div>
+
+    <!-- 版本卡片 -->
+    <div class="version-card">
+        <div class="card-header">
+            <h2>下载Kiz 2026.1</h2>
+            <span class="latest-badge">最新版本</span>
+        </div>
+        <div class="card-body">
+            <div class="update-list">
+                <h3>本次更新:</h3>
+                <ul>
+                    <li>实现kiz2026.1特性文档中的所有功能</li>
+                </ul>
+            </div>
+            <div class="download-buttons">
+                <a id="primaryBtn" class="btn btn-primary" href="#" target="_blank">
+                    <i>⬇️</i> 下载 Windows 版本
+                </a>
+                <a id="secondaryBtn" class="btn btn-secondary" href="#" target="_blank">
+                    <i>⬇️</i> Linux 版本
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 平台检测逻辑
+        const isWindows = navigator.platform.includes('Win');
+        const winUrl = 'https://kiz.random321.com/download/kiz2026/kiz.exe';
+        const linuxUrl = 'https://kiz.random321.com/download/kiz2026/kiz.elf';
+
+        const primaryBtn = document.getElementById('primaryBtn');
+        const secondaryBtn = document.getElementById('secondaryBtn');
+
+        if (isWindows) {
+            // Windows 用户
+            primaryBtn.href = winUrl;
+            primaryBtn.innerHTML = '<i>⬇️</i> 下载 Windows 版本';
+            secondaryBtn.href = linuxUrl;
+            secondaryBtn.innerHTML = '<i>⬇️</i> Linux 版本';
+        } else {
+            // 非Windows用户（默认Linux）
+            primaryBtn.href = linuxUrl;
+            primaryBtn.innerHTML = '<i>⬇️</i> 下载 Linux 版本';
+            secondaryBtn.href = winUrl;
+            secondaryBtn.innerHTML = '<i>⬇️</i> Windows 版本';
+        }
+    </script>
+</body>
+</html>
